@@ -8,6 +8,7 @@ const item7 = document.getElementById("item7");
 const item8 = document.getElementById("item8");
 const item9 = document.getElementById("item9");
 const btn   = document.querySelector (".btn" );
+const player = document.querySelector (".player");
 
 item1.addEventListener("click",() => miTurno(item1));
 item2.addEventListener("click",() => miTurno(item2));
@@ -25,8 +26,10 @@ let y = 0;
 function jugador(){
     y = 0;
     if ( x == 0){
+        player.innerText = "O";
         x++;
     }else{
+        player.innerText = "X";
         x = 0;
     }
 }
