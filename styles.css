@@ -15,6 +15,16 @@
     gap: 5px;
 }
 [id^="item"]{
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
     border: 3px solid black;
+
+}
+.btn{
+    position: relative;
+    width: 100px;
+    height: 50px;
+    margin-left: 50px;
 }
