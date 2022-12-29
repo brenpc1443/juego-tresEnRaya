@@ -8,6 +8,7 @@ const item7 = document.getElementById("item7");
 const item8 = document.getElementById("item8");
 const item9 = document.getElementById("item9");
 const btn   = document.querySelector (".btn" );
+const btnWin   = document.querySelector (".btnWin" );
 const player = document.querySelector (".player");
 
 item1.addEventListener("click",() => miTurno(item1));
@@ -20,6 +21,7 @@ item7.addEventListener("click",() => miTurno(item7));
 item8.addEventListener("click",() => miTurno(item8));
 item9.addEventListener("click",() => miTurno(item9));
 btn.  addEventListener("click", jugador);
+btnWin.addEventListener("click", reiniciar);
 
 let x = 0;
 let y = 0;
@@ -37,7 +39,8 @@ let array = [4, 5, 4  //////
 
 function jugador(){
 ////////////////////////////////////
-    if(y == 1){//evita que el jugador juegue fuera de su turno
+    switch(y){
+    case 1: //evita que el jugador juegue fuera de su turno
         y = 0;//al presionar el boton, el jugador puede jugar su turno
         if ( x == 0){//indica a que jugador le pertenece el turno
             player.innerText = "O";
@@ -46,11 +49,13 @@ function jugador(){
             player.innerText = "X";
             x = 0;
         }
-    }else if (y == 0){
+        break;
+    case 0://indica al jugador que no ah completado su turno
         player.setAttribute("style", "border: 3px solid red")
         setTimeout(() => {
             player.setAttribute("style", "transition: 0.5s; border: 3px solid grey")
         }, 500);
+        break;
     }
 ///////////////////////////////////
 }
@@ -66,7 +71,6 @@ function miTurno (item){
     if ( y == 0 ){//evita que el jugador juegue más de una vez en su turno
         if(valorItem == 0 || valorItem == 1){//evita que el jugador sobrejuegue en otro jugador
         }else{
-            
             switch(x){
                 case 0: 
                     item.innerText = "X";
@@ -81,6 +85,17 @@ function miTurno (item){
         }
     }
 ////////////////////////////////////////////////
+}
+
+function reiniciar(){
+    for(let z = 0; z < arrayItems.length; z++){
+            array[z] = 5;
+            arrayItems[z].innerText = "";
+            arrayItems[z].setAttribute("style", "color: black");
+    }
+    btn.classList.remove("inactive");
+    btnWin.classList.add("inactive");
+    y = 0;
 }
 
 const win = (item) =>{
@@ -152,6 +167,9 @@ const win = (item) =>{
             }
             break;
         }
+        if(y == 2){ //cambia de boton cuando el jugador ya gano
+            btn.classList.add("inactive");
+            btnWin.classList.remove("inactive");
+        }
     }
 }
-
