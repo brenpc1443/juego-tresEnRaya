@@ -1,0 +1,26 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-two{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+}
+.player{
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    position: relative;
+}
+.btn{
+    position: relative;
+    margin-left: 40px;
+}
+.btnWin{
+    position: relative;
+    margin-left: 40px;
+}
