@@ -27,6 +27,14 @@ const arrayItems = [item1, item2, item3,
                     item4, item5, item6, 
                     item7, item8, item9];
 
+
+////////////////////////////
+let array = [4, 5, 4  //////
+            ,5, 4, 5  //////
+            ,4, 5, 4];//////                //////
+////////////////////////////
+
+
 function jugador(){
 ////////////////////////////////////
     y = 0;
@@ -42,67 +50,44 @@ function jugador(){
 
 function miTurno (item){
 //////////////////////////////////////////
-    if ( y == 0){
-//////////////////////////////////////////
-    win(item);
-//////////////////////////////////////////
-        switch(x){
-            case 0: 
-                item.innerText = "X";
-                y = 1;
-                break;
-            case 1:
-                item.innerText = "O";
-                y = 1;
-                break;
+    let valorItem;
+    for(let z = 0; z < arrayItems.length; z++){
+        if(arrayItems[z] === item){
+            valorItem = array[z];
+        }
+    }
+    if ( y == 0 ){
+        win(item);
+        if(valorItem == 0 || valorItem == 1){
+        }else{
+            switch(x){
+                case 0: 
+                    item.innerText = "X";
+                    y = 1;
+                    break;
+                case 1:
+                    item.innerText = "O";
+                    y = 1;
+                    break;
+            }
         }
     }
 ////////////////////////////////////////////////
 }
 
-////////////////////////////
-let array = [4, 5, 4  //////
-            ,5, 4, 5  //////
-            ,4, 5, 4];//////                //////
-////////////////////////////
-
 const win = (item) =>{
-    let z;
 ////////////////////////////////
-    switch(item){
-        case item1:
-        z = 0;
-        break;
-        case item2:
-        z = 1;
-        break;
-        case item3:
-        z = 2;
-        break;
-        case item4:
-        z = 3;
-        break;
-        case item5:
-        z = 4;
-        break;
-        case item6:
-        z = 5;
-        break;
-        case item7:
-        z = 6;
-        break;
-        case item8:
-        z = 7;
-        break;
-        case item9:
-        z = 8;
-        break;
+    for(let z = 0; z < arrayItems.length; z++){
+        if(arrayItems[z] === item){
+            array[z] = x;
+        }
     }
-    array[z] = x;
 /////////////////////////////////
-    console.log(array);
+    console.log("este juego es traído gracias a: brenpc1443");
+
     for(n = 0; n < array.length; n++){
-        if(n == 0){
+        switch(n){
+        case 0:
             if((array[n] + array[n + 1] + array[n + 2]) === 0 || (array[n] + array[n + 1] + array[n + 2]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 1].setAttribute("style", "color: red");
@@ -118,15 +103,15 @@ const win = (item) =>{
                 arrayItems[n + 4].setAttribute("style", "color: red");
                 arrayItems[n + 8].setAttribute("style", "color: red");
             }
-        }
-        else if(n == 1){
+            break;
+        case 1:
             if((array[n] + array[n + 3] + array[n + 6]) === 0 || (array[n] + array[n + 3] + array[n + 6]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 3].setAttribute("style", "color: red");
                 arrayItems[n + 6].setAttribute("style", "color: red");
             }
-        }
-        else if(n == 5){
+            break;
+        case 5:
             if((array[n] + array[n - 3] + array[n + 3]) === 0 || (array[n] + array[n - 3] + array[n + 3]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 3].setAttribute("style", "color: red");
@@ -137,8 +122,8 @@ const win = (item) =>{
                 arrayItems[n - 1].setAttribute("style", "color: red");
                 arrayItems[n - 2].setAttribute("style", "color: red");
             }
-        }
-        else if(n == 6){
+            break;
+        case 6:
             if((array[n] + array[n + 1] + array[n + 2]) === 0 || (array[n] + array[n + 1] + array[n + 2]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 1].setAttribute("style", "color: red");
@@ -149,8 +134,8 @@ const win = (item) =>{
                 arrayItems[n - 2].setAttribute("style", "color: red");
                 arrayItems[n - 4].setAttribute("style", "color: red");
             }
+            break;
         }
     }
-    console.log(n);
-
 }
+
