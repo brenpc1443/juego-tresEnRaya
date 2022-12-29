@@ -31,35 +31,42 @@ const arrayItems = [item1, item2, item3,
 ////////////////////////////
 let array = [4, 5, 4  //////
             ,5, 4, 5  //////
-            ,4, 5, 4];//////                //////
+            ,4, 5, 4];//////
 ////////////////////////////
 
 
 function jugador(){
 ////////////////////////////////////
-    y = 0;
-    if ( x == 0){
-        player.innerText = "O";
-        x++;
-    }else{
-        player.innerText = "X";
-        x = 0;
+    if(y == 1){//evita que el jugador juegue fuera de su turno
+        y = 0;//al presionar el boton, el jugador puede jugar su turno
+        if ( x == 0){//indica a que jugador le pertenece el turno
+            player.innerText = "O";
+            x++;
+        }else{
+            player.innerText = "X";
+            x = 0;
+        }
+    }else if (y == 0){
+        player.setAttribute("style", "border: 3px solid red")
+        setTimeout(() => {
+            player.setAttribute("style", "transition: 0.5s; border: 3px solid grey")
+        }, 500);
     }
 ///////////////////////////////////
 }
 
-function miTurno (item){
+function miTurno (item){  
 //////////////////////////////////////////
     let valorItem;
-    for(let z = 0; z < arrayItems.length; z++){
+    for(let z = 0; z < arrayItems.length; z++){//busca si un jugador ya ah jugado en tal casilla
         if(arrayItems[z] === item){
             valorItem = array[z];
         }
     }
-    if ( y == 0 ){
-        win(item);
-        if(valorItem == 0 || valorItem == 1){
+    if ( y == 0 ){//evita que el jugador juegue más de una vez en su turno
+        if(valorItem == 0 || valorItem == 1){//evita que el jugador sobrejuegue en otro jugador
         }else{
+            
             switch(x){
                 case 0: 
                     item.innerText = "X";
@@ -70,6 +77,7 @@ function miTurno (item){
                     y = 1;
                     break;
             }
+            win(item);
         }
     }
 ////////////////////////////////////////////////
@@ -77,7 +85,7 @@ function miTurno (item){
 
 const win = (item) =>{
 ////////////////////////////////
-    for(let z = 0; z < arrayItems.length; z++){
+    for(let z = 0; z < arrayItems.length; z++){//array que almacena si un jugador ya jugó tal casilla
         if(arrayItems[z] === item){
             array[z] = x;
         }
@@ -85,23 +93,26 @@ const win = (item) =>{
 /////////////////////////////////
     console.log("este juego es traído gracias a: brenpc1443");
 
-    for(n = 0; n < array.length; n++){
+    for(n = 0; n < array.length; n++){//revisa si ya hay un tres en raya y lo marca de rojo
         switch(n){
         case 0:
             if((array[n] + array[n + 1] + array[n + 2]) === 0 || (array[n] + array[n + 1] + array[n + 2]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 1].setAttribute("style", "color: red");
                 arrayItems[n + 2].setAttribute("style", "color: red");
+                y = 2;
             }
             else if((array[n] + array[n + 3] + array[n + 6]) === 0 || (array[n] + array[n + 3] + array[n + 6]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 3].setAttribute("style", "color: red");
                 arrayItems[n + 6].setAttribute("style", "color: red");
+                y = 2;
             }
             else if((array[n] + array[n + 4] + array[n + 8]) === 0 || (array[n] + array[n + 4] + array[n + 8]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 4].setAttribute("style", "color: red");
                 arrayItems[n + 8].setAttribute("style", "color: red");
+                y = 2;
             }
             break;
         case 1:
@@ -109,6 +120,7 @@ const win = (item) =>{
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 3].setAttribute("style", "color: red");
                 arrayItems[n + 6].setAttribute("style", "color: red");
+                y = 2;
             }
             break;
         case 5:
@@ -116,11 +128,13 @@ const win = (item) =>{
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 3].setAttribute("style", "color: red");
                 arrayItems[n - 3].setAttribute("style", "color: red");
+                y = 2;
             }
             else if((array[n] + array[n - 1] + array[n - 2]) === 0 || (array[n] + array[n - 1] + array[n - 2]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n - 1].setAttribute("style", "color: red");
                 arrayItems[n - 2].setAttribute("style", "color: red");
+                y = 2;
             }
             break;
         case 6:
@@ -128,11 +142,13 @@ const win = (item) =>{
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n + 1].setAttribute("style", "color: red");
                 arrayItems[n + 2].setAttribute("style", "color: red");
+                y = 2;
             }
             else if((array[n] + array[n - 2] + array[n - 4]) === 0 || (array[n] + array[n - 2] + array[n - 4]) == 3){
                 arrayItems[n].setAttribute("style", "color: red");
                 arrayItems[n - 2].setAttribute("style", "color: red");
                 arrayItems[n - 4].setAttribute("style", "color: red");
+                y = 2;
             }
             break;
         }
