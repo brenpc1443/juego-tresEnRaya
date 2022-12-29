@@ -23,15 +23,17 @@
 
 }
 .btn{
+    position: absolute;
     width: 100px;
     height: 50px;
     left: calc(10% + 50px);
     top: 65%;
 }
 .btnWin{
+    position: absolute;
     width: 100px;
     height: 50px;
-    margin-left: 80px;
+    left: calc(10% + 50px);
     top: 65%;
 }
 .player{
