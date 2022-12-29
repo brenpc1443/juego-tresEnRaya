@@ -81,6 +81,7 @@ function miTurno (item){
                     y = 1;
                     break;
             }
+            tie();
             win(item);
         }
     }
@@ -98,6 +99,17 @@ function reiniciar(){
     y = 0;
 }
 
+const tie = () =>{
+    let suma = 0;
+    for(let z = 0; z < array.length; z++){
+        suma = suma  + array[z];
+    }
+    if ( suma == 4 || suma == 5 ){
+        btn.classList.add("inactive");
+        btnWin.classList.remove("inactive");
+    }
+}
+
 const win = (item) =>{
 ////////////////////////////////
     for(let z = 0; z < arrayItems.length; z++){//array que almacena si un jugador ya jugó tal casilla
@@ -107,7 +119,7 @@ const win = (item) =>{
     }
 /////////////////////////////////
     console.log("este juego es traído gracias a: brenpc1443");
-
+    tie();
     for(n = 0; n < array.length; n++){//revisa si ya hay un tres en raya y lo marca de rojo
         switch(n){
         case 0:
